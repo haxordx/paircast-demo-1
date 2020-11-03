@@ -1,5 +1,17 @@
 const { app, BrowserWindow } = require('electron')
 
+const { Notification } = require('electron')
+
+function showNotification() {
+    const notification = {
+        title: 'Basic Notification',
+        body: 'Notification from the Main process'
+    }
+    new Notification(notification).show()
+}
+
+app.whenReady().then(createWindow).then(showNotification)
+
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
